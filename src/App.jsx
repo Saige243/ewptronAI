@@ -18,13 +18,13 @@ function App() {
 
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-  const openai = new OpenAI('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');
+  const openai = new OpenAI('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');
 
   function getOpenAiResponse() {
     (async () => {
       const gptResponse = await openai.complete({
         engine: 'davinci',
-        prompt: 'Is it working?!',
+        prompt: 'Hi there!',
         maxTokens: 9,
         temperature: 0.9,
         topP: 1,
