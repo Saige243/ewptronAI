@@ -7,6 +7,7 @@ import Button from '@mui/material/Button'
 
 
 function App() {
+  // wont need this vvvvv
   // const { Configuration, OpenAIApi } = require("openai");
   const [result, setResult] = useState('')
   const [answer, setAnswer] = useState('')
