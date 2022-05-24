@@ -16,9 +16,9 @@ function App() {
   // });
   const OpenAI = require('openai-api');
 
-  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
-  const openai = new OpenAI('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');
+  const openai = new OpenAI(API_KEY);
 
   function getOpenAiResponse() {
     (async () => {
@@ -47,7 +47,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>🤖 Hi! I'm Charles.🤖</h1>
+      <h1>🤖 Hi! I'm Ewptron.🤖</h1>
       <h3>Ask me anything. I'll cut to the chase.</h3>
       <Box
         sx={{
