@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button'
-import { render } from 'react-dom';
 
 
 function App() {
@@ -14,7 +13,7 @@ function App() {
   function getAxiosResponse() {
     const axios = require('axios');
     const data = JSON.stringify({
-      "prompt": "Can you list your favorite William Carlos William poem?",
+      "prompt": "List the members of gogo penguin.",
       "temperature": 0,
       "max_tokens": 60,
       "top_p": 1,
