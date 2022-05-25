@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button'
+import { render } from 'react-dom';
 
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
   function getAxiosResponse() {
     const axios = require('axios');
     const data = JSON.stringify({
-      "prompt": "What is your favorite William Carlos Williams poem?",
+      "prompt": "Can you list your favorite William Carlos William poem?",
       "temperature": 0,
       "max_tokens": 60,
       "top_p": 1,
@@ -40,8 +41,8 @@ function App() {
         setAiResult(answer)
 
         console.log(response.data);
-        console.log(answer)
-        console.log(aiResult)
+        // console.log(answer)
+        // console.log(aiResult)
       })
       .catch(function (error) {
         console.log(error);
@@ -49,8 +50,10 @@ function App() {
   }
 
   useEffect(() => {
-
-  });
+    setAiResult(answer)
+    console.log(answer)
+    console.log(aiResult)
+  }, [answer, aiResult]);
 
   return (
     <div className="App">
@@ -82,6 +85,7 @@ function App() {
           // onChange={handleChange}
           />
           <h2>🤖 :</h2>
+          <p>{aiResult}</p>
           {/* {answer} */}
           <Button
             sx={{
