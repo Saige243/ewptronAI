@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl';
@@ -7,7 +7,7 @@ import Button from '@mui/material/Button'
 
 
 function App() {
-  const [result, setResult] = useState('')
+  const [aiResult, setAiResult] = useState('')
   const [answer, setAnswer] = useState('')
 
   function getAxiosResponse() {
@@ -34,13 +34,23 @@ function App() {
     axios(config)
       .then(function (response) {
         // console.log(JSON.stringify(response.data));
+        // console.log(response.data.choices[0].text)
+
+        setAnswer(response.data.choices[0].text)
+        setAiResult(answer)
+
         console.log(response.data);
-        console.log(data.choices)
+        console.log(answer)
+        console.log(aiResult)
       })
       .catch(function (error) {
         console.log(error);
       });
   }
+
+  useEffect(() => {
+
+  });
 
   return (
     <div className="App">
@@ -64,7 +74,7 @@ function App() {
             multiline
             size="large"
             maxRows={8}
-            onChange={(e) => setResult(e.target.value)}
+            // onChange={(e) => setResult(e.target.value)}
             sx={{
               marginBottom: 3
             }}
@@ -72,7 +82,7 @@ function App() {
           // onChange={handleChange}
           />
           <h2>🤖 :</h2>
-          {answer}
+          {/* {answer} */}
           <Button
             sx={{
               marginTop: 3
@@ -83,7 +93,6 @@ function App() {
             Submit
           </Button>
         </FormControl>
-        <h2></h2>
       </Box>
     </div>
   );
