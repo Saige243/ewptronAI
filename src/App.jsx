@@ -13,7 +13,7 @@ function App() {
   function getAxiosResponse() {
     const axios = require('axios');
     const data = JSON.stringify({
-      "prompt": "Do you prefer TS Eliot or William Carlos Williams?",
+      "prompt": "What is your favorite William Carlos Williams poem?",
       "temperature": 0,
       "max_tokens": 60,
       "top_p": 1,
@@ -25,7 +25,7 @@ function App() {
       method: 'post',
       url: 'https://api.openai.com/v1/engines/text-davinci-002/completions',
       headers: {
-        'Authorization': 'Bearer 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',
+        'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`,
         'Content-Type': 'application/json'
       },
       data: data
@@ -33,7 +33,9 @@ function App() {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
+        console.log(response.data);
+        console.log(data.choices)
       })
       .catch(function (error) {
         console.log(error);
