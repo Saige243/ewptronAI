@@ -7,42 +7,37 @@ import Button from '@mui/material/Button'
 
 
 function App() {
-  // wont need this vvvvv
-  // const { Configuration, OpenAIApi } = require("openai");
   const [result, setResult] = useState('')
   const [answer, setAnswer] = useState('')
-  // const configuration = new Configuration({
-  //   apiKey: "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",
-  // });
-  const OpenAI = require('openai-api');
 
-  const API_KEY = process.env.REACT_APP_API_KEY;
+  function getAxiosResponse() {
+    const axios = require('axios');
+    const data = JSON.stringify({
+      "prompt": "Do you prefer TS Eliot or William Carlos Williams?",
+      "temperature": 0,
+      "max_tokens": 60,
+      "top_p": 1,
+      "frequency_penalty": 0,
+      "presence_penalty": 0
+    });
 
-  const openai = new OpenAI(API_KEY);
+    const config = {
+      method: 'post',
+      url: 'https://api.openai.com/v1/engines/text-davinci-002/completions',
+      headers: {
+        'Authorization': 'Bearer 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',
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
 
-  function getOpenAiResponse() {
-    (async () => {
-      const gptResponse = await openai.complete({
-        engine: 'davinci',
-        prompt: 'Hi there!',
-        maxTokens: 9,
-        temperature: 0.9,
-        topP: 1,
-        presencePenalty: 0,
-        frequencyPenalty: 0,
-        bestOf: 1,
-        n: 1,
-        stream: false,
-        stop: ['\n', "testing"]
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
       });
-
-      console.log(gptResponse.data);
-    })();
-  }
-
-  function submitForm() {
-    setAnswer(result)
-    getOpenAiResponse()
   }
 
   return (
@@ -81,7 +76,7 @@ function App() {
               marginTop: 3
             }}
             variant="outlined"
-            onClick={getOpenAiResponse}
+            onClick={getAxiosResponse}
           >
             Submit
           </Button>
