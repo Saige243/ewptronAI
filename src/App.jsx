@@ -6,9 +6,6 @@ import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button'
 import LinearProgress from '@mui/material/LinearProgress';
 
-// import LoadingButton from '@mui/lab/LoadingButton';
-// import SendIcon from '@mui/icons-material/Send';
-
 function App() {
   const [aiResult, setAiResult] = useState('')
   const [answer, setAnswer] = useState('')
@@ -17,6 +14,7 @@ function App() {
 
 
   function getAxiosResponse() {
+    setLoading(true)
     const axios = require('axios');
     const data = JSON.stringify({
       "prompt": prompt,
@@ -39,15 +37,9 @@ function App() {
 
     axios(config)
       .then(function (response) {
-        // console.log(JSON.stringify(response.data));
-        // console.log(response.data.choices[0].text)
         setAnswer(response.data.choices[0].text)
         setAiResult(answer)
-        setLoading(true)
-
-        console.log(response.data);
-        // console.log(answer)
-        // console.log(aiResult)
+        setLoading(false)
       })
       .catch(function (error) {
         console.log(error);
@@ -57,8 +49,6 @@ function App() {
 
   useEffect(() => {
     setAiResult(answer)
-    console.log(answer)
-    console.log(aiResult)
   }, [answer, aiResult, loading]);
 
   return (
