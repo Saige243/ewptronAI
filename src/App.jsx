@@ -3,13 +3,18 @@ import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl';
-import Button from '@mui/material/Button'
+// import Button from '@mui/material/Button'
+import LoadingButton from '@mui/lab/LoadingButton';
+import SendIcon from '@mui/icons-material/Send';
+
 
 
 function App() {
   const [aiResult, setAiResult] = useState('')
   const [answer, setAnswer] = useState('')
   const [prompt, setPrompt] = useState('')
+  const [loading, setLoading] = useState(false);
+
 
   function getAxiosResponse() {
     const axios = require('axios');
@@ -36,9 +41,9 @@ function App() {
       .then(function (response) {
         // console.log(JSON.stringify(response.data));
         // console.log(response.data.choices[0].text)
-
         setAnswer(response.data.choices[0].text)
         setAiResult(answer)
+        setLoading(!loading)
 
         console.log(response.data);
         // console.log(answer)
@@ -53,7 +58,7 @@ function App() {
     setAiResult(answer)
     console.log(answer)
     console.log(aiResult)
-  }, [answer, aiResult]);
+  }, [answer, aiResult, loading]);
 
   return (
     <div className="App">
@@ -73,7 +78,7 @@ function App() {
           <h3>🤔 :</h3>
           <TextField
             id="outlined-multiline-flexible"
-            label="Ask me anything!"
+            label="Let's hear it."
             multiline
             size="large"
             maxRows={8}
@@ -86,16 +91,24 @@ function App() {
           />
           <h2>🤖 :</h2>
           <p>{aiResult}</p>
-          {/* {answer} */}
-          <Button
+          <LoadingButton
+            onClick={getAxiosResponse}
+            endIcon={<SendIcon />}
+            loading={loading}
+            loadingPosition="end"
+            variant="contained"
+          >
+            Submit
+        </LoadingButton>
+          {/* <Button
             sx={{
-              marginTop: 3
+              marginTop: 3,
             }}
             variant="outlined"
             onClick={getAxiosResponse}
           >
             Submit
-          </Button>
+          </Button> */}
         </FormControl>
       </Box>
     </div>
