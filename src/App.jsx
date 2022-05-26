@@ -5,12 +5,14 @@ import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button'
 import LinearProgress from '@mui/material/LinearProgress';
+import History from './Components/History'
 
 function App() {
   const [aiResult, setAiResult] = useState('')
   const [answer, setAnswer] = useState('')
   const [prompt, setPrompt] = useState('')
   const [loading, setLoading] = useState(false);
+  const [history, setHistory] = useState(false)
 
 
   function getAxiosResponse() {
@@ -40,6 +42,7 @@ function App() {
         setAnswer(response.data.choices[0].text)
         setAiResult(answer)
         setLoading(false)
+        setHistory(true)
       })
       .catch(function (error) {
         console.log(error);
@@ -50,6 +53,7 @@ function App() {
   useEffect(() => {
     setAiResult(answer)
   }, [answer, aiResult, loading]);
+
 
   return (
     <div className="App">
@@ -80,20 +84,9 @@ function App() {
             sx={{
               marginBottom: 3
             }}
-          // value={value}
-          // onChange={handleChange}
           />
           <h2>🤖 :</h2>
           <p>{aiResult}</p>
-          {/* <LoadingButton
-            onClick={getAxiosResponse}
-            endIcon={<SendIcon />}
-            loading={loading}
-            loadingPosition="end"
-            variant="contained"
-          >
-            Submit
-        </LoadingButton> */}
           <Button
             sx={{
               marginTop: 3,
@@ -105,6 +98,7 @@ function App() {
           </Button>
         </FormControl>
       </Box>
+      {history && <History />}
     </div>
   );
 }
