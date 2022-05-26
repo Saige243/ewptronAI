@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl';
-// import Button from '@mui/material/Button'
-import LoadingButton from '@mui/lab/LoadingButton';
-import SendIcon from '@mui/icons-material/Send';
+import Button from '@mui/material/Button'
+import LinearProgress from '@mui/material/LinearProgress';
 
-
+// import LoadingButton from '@mui/lab/LoadingButton';
+// import SendIcon from '@mui/icons-material/Send';
 
 function App() {
   const [aiResult, setAiResult] = useState('')
@@ -21,7 +21,7 @@ function App() {
     const data = JSON.stringify({
       "prompt": prompt,
       "temperature": 0,
-      "max_tokens": 60,
+      "max_tokens": 80,
       "top_p": 1,
       "frequency_penalty": 0,
       "presence_penalty": 0
@@ -43,7 +43,7 @@ function App() {
         // console.log(response.data.choices[0].text)
         setAnswer(response.data.choices[0].text)
         setAiResult(answer)
-        setLoading(!loading)
+        setLoading(true)
 
         console.log(response.data);
         // console.log(answer)
@@ -54,6 +54,7 @@ function App() {
       });
   }
 
+
   useEffect(() => {
     setAiResult(answer)
     console.log(answer)
@@ -62,6 +63,9 @@ function App() {
 
   return (
     <div className="App">
+      <Box sx={{ width: '100%' }}>
+        {loading && <LinearProgress />}
+      </Box>
       <h1>🤖 Hi! I'm Ewptron.🤖</h1>
       <h3>Ask me anything. I'll cut to the chase.</h3>
       <Box
@@ -91,7 +95,7 @@ function App() {
           />
           <h2>🤖 :</h2>
           <p>{aiResult}</p>
-          <LoadingButton
+          {/* <LoadingButton
             onClick={getAxiosResponse}
             endIcon={<SendIcon />}
             loading={loading}
@@ -99,8 +103,8 @@ function App() {
             variant="contained"
           >
             Submit
-        </LoadingButton>
-          {/* <Button
+        </LoadingButton> */}
+          <Button
             sx={{
               marginTop: 3,
             }}
@@ -108,7 +112,7 @@ function App() {
             onClick={getAxiosResponse}
           >
             Submit
-          </Button> */}
+          </Button>
         </FormControl>
       </Box>
     </div>
