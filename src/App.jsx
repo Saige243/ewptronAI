@@ -9,11 +9,12 @@ import Button from '@mui/material/Button'
 function App() {
   const [aiResult, setAiResult] = useState('')
   const [answer, setAnswer] = useState('')
+  const [prompt, setPrompt] = useState('')
 
   function getAxiosResponse() {
     const axios = require('axios');
     const data = JSON.stringify({
-      "prompt": "List the members of gogo penguin.",
+      "prompt": prompt,
       "temperature": 0,
       "max_tokens": 60,
       "top_p": 1,
@@ -76,7 +77,7 @@ function App() {
             multiline
             size="large"
             maxRows={8}
-            // onChange={(e) => setResult(e.target.value)}
+            onChange={(e) => setPrompt(e.target.value)}
             sx={{
               marginBottom: 3
             }}
