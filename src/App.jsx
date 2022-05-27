@@ -23,7 +23,7 @@ function App() {
     const data = JSON.stringify({
       "prompt": prompt,
       "temperature": 0,
-      "max_tokens": 80,
+      "max_tokens": 20,
       "top_p": 1,
       "frequency_penalty": 0,
       "presence_penalty": 0
@@ -45,21 +45,21 @@ function App() {
         setAiResult(answer)
         setLoading(false)
         setHistory(true)
-        setAiArr([...aiArr, { aiResult }])
+        // setAiArr([...aiArr, { aiResult }])
         setPromptArr([...promptArr, { prompt }])
-
       })
       .catch(function (error) {
         console.log(error);
       });
+
   }
 
   useEffect(() => {
     setAiResult(answer)
+    setAiArr([...aiArr, { answer }])
     console.log(promptArr)
     console.log(aiArr)
-  }, [answer, aiResult, loading]);
-
+  }, [answer, aiResult, loading,]);
 
   return (
     <div className="App">
