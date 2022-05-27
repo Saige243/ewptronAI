@@ -14,6 +14,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [history, setHistory] = useState(false)
 
+  const [promptArr, setPromptArr] = useState([])
+  const [aiArr, setAiArr] = useState([])
 
   function getAxiosResponse() {
     setLoading(true)
@@ -43,15 +45,19 @@ function App() {
         setAiResult(answer)
         setLoading(false)
         setHistory(true)
+        setAiArr([...aiArr, { aiResult }])
+        setPromptArr([...promptArr, { prompt }])
+
       })
       .catch(function (error) {
         console.log(error);
       });
   }
 
-
   useEffect(() => {
     setAiResult(answer)
+    console.log(promptArr)
+    console.log(aiArr)
   }, [answer, aiResult, loading]);
 
 
@@ -98,7 +104,11 @@ function App() {
           </Button>
         </FormControl>
       </Box>
-      {history && <History />}
+      {history &&
+        <History
+          prompt={prompt}
+          aiResult={aiResult}
+        />}
     </div>
   );
 }
