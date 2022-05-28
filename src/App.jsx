@@ -67,7 +67,7 @@ function App() {
         {loading && <LinearProgress />}
       </Box>
       <h1>🤖 Hi! I'm Ewptron.🤖</h1>
-      <h3>Ask me anything. I'll cut to the chase.</h3>
+      <h3>Ask me anything.</h3>
       <Box
         sx={{
           width: "100%",
