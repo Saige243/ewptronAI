@@ -59,7 +59,7 @@ function App() {
     setAiArr([...aiArr, { answer }])
     console.log(promptArr)
     console.log(aiArr)
-  }, [answer, aiResult, loading,]);
+  }, [answer, aiResult, loading]);
 
   return (
     <div className="App">
@@ -105,10 +105,16 @@ function App() {
         </FormControl>
       </Box>
       {history &&
+        <ul className="todo-list">
+          {Object.entries(promptArr).map(([key, value]) => (
+            <p>{key}</p>
+          ))}
+        </ul>}
+      {/* {history &&
         <History
           prompt={prompt}
           aiResult={aiResult}
-        />}
+        />} */}
     </div>
   );
 }
