@@ -11,6 +11,7 @@ function App() {
   const [prompt, setPrompt] = useState('')
   const [loading, setLoading] = useState(false);
   const [history, setHistory] = useState(false)
+  const [lastAnswer, setLastAnswer] = useState('')
 
   const [promptArr, setPromptArr] = useState([])
   const [aiArr, setAiArr] = useState([])
@@ -44,6 +45,7 @@ function App() {
         setHistory(true)
         setPromptArr([...promptArr, { prompt }])
         setAiArr([...aiArr, { answer }])
+        setLastAnswer(answer)
       })
       .catch(function (error) {
         console.log(error);
@@ -51,6 +53,7 @@ function App() {
   }
 
   useEffect(() => {
+    console.log(lastAnswer)
     console.log(promptArr)
     console.log(aiArr)
   }, [aiArr]);
@@ -86,7 +89,7 @@ function App() {
             }}
           />
           <h2>🤖 :</h2>
-          {/* <p>{aiArr}</p> */}
+          <p>{lastAnswer}</p>
           <Button
             sx={{
               marginTop: 3,
