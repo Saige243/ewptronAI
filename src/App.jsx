@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button'
 import LinearProgress from '@mui/material/LinearProgress';
-import History from './Components/History'
+// import History from './Components/History'
 
 function App() {
   const [prompt, setPrompt] = useState('')
@@ -46,6 +46,7 @@ function App() {
         setPromptArr([...promptArr, { prompt }])
         setAiArr([...aiArr, { answer }])
         setLastAnswer(answer)
+
       })
       .catch(function (error) {
         console.log(error);
@@ -101,17 +102,20 @@ function App() {
           </Button>
         </FormControl>
       </Box>
-      {history &&
-        // <ul className="todo-list">
-        //   {Object.entries(promptArr).forEach(([key, value]) => (
-        //     console.log(value)
-        //     <p>{key}</p>
-        //   ))}
-        // </ul>}
-        <History
-          prompt={prompt}
-        // aiResult={[...aiResult]}
-        />}
+      <ul style={{
+        textAlign: "left"
+      }}>
+        {history &&
+          Object.values(promptArr).map((valueName, i) => (
+            <p key={i}>😀: {valueName.prompt}</p>
+          ))
+        }
+        {history &&
+          Object.values(aiArr).map((answerName, o) => (
+            <p key={o}>🤖:{answerName.answer}</p>
+          ))
+        }
+      </ul>
     </div>
   );
 }
