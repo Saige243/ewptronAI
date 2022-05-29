@@ -9,7 +9,7 @@ import History from './Components/History'
 
 function App() {
   const [aiResult, setAiResult] = useState('')
-  const [answer, setAnswer] = useState('')
+  // const [answer, setAnswer] = useState('')
   const [prompt, setPrompt] = useState('')
   const [loading, setLoading] = useState(false);
   const [history, setHistory] = useState(false)
@@ -42,12 +42,15 @@ function App() {
     axios(config)
       .then(function (response) {
         // setAnswer(response.data.choices[0].text)
-        setAiResult(response.data.choices[0].text)
+        const answer = response.data.choices[0].text
+        // setAiResult(response.data.choices[0].text)
+        // console.log(aiResult)
         // setAiResult(answer)
         setLoading(false)
         setHistory(true)
         // setAiArr([...aiArr, { aiResult }])
         setPromptArr([...promptArr, { prompt }])
+        setAiArr([...aiArr, { answer }])
       })
       .catch(function (error) {
         console.log(error);
@@ -57,10 +60,12 @@ function App() {
 
   useEffect(() => {
     // setAiResult(answer)
-    setAiArr([...aiArr, { aiResult }])
+    // setAiArr([...aiArr, { aiResult }])
+    // setAiArr([...aiArr, { aiResult }])
+    console.log(aiResult)
     console.log(promptArr)
     console.log(aiArr)
-  }, [aiResult]);
+  }, [aiResult, aiArr]);
 
   return (
     <div className="App">
@@ -114,7 +119,7 @@ function App() {
         // </ul>}
         <History
           prompt={prompt}
-          aiResult={aiResult}
+          aiResult={[...aiResult]}
         />}
     </div>
   );
