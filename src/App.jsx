@@ -41,8 +41,9 @@ function App() {
 
     axios(config)
       .then(function (response) {
-        setAnswer(response.data.choices[0].text)
-        setAiResult(answer)
+        // setAnswer(response.data.choices[0].text)
+        setAiResult(response.data.choices[0].text)
+        // setAiResult(answer)
         setLoading(false)
         setHistory(true)
         // setAiArr([...aiArr, { aiResult }])
@@ -55,11 +56,11 @@ function App() {
   }
 
   useEffect(() => {
-    setAiResult(answer)
-    setAiArr([...aiArr, { answer }])
+    // setAiResult(answer)
+    setAiArr([...aiArr, { aiResult }])
     console.log(promptArr)
     console.log(aiArr)
-  }, [answer, aiResult, loading]);
+  }, [aiResult]);
 
   return (
     <div className="App">
@@ -105,16 +106,16 @@ function App() {
         </FormControl>
       </Box>
       {history &&
-        <ul className="todo-list">
-          {Object.entries(promptArr).map(([key, value]) => (
-            <p>{key}</p>
-          ))}
-        </ul>}
-      {/* {history &&
+        // <ul className="todo-list">
+        //   {Object.entries(promptArr).forEach(([key, value]) => (
+        //     console.log(value)
+        //     <p>{key}</p>
+        //   ))}
+        // </ul>}
         <History
           prompt={prompt}
           aiResult={aiResult}
-        />} */}
+        />}
     </div>
   );
 }
