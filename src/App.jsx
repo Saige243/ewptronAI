@@ -107,7 +107,7 @@ function App() {
       </Box>
       <ul style={{
         textAlign: "left",
-        margin: 1
+        marginRight: 7
       }}>
         <p>
           {history &&
