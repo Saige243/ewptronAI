@@ -22,7 +22,7 @@ function App() {
     const data = JSON.stringify({
       "prompt": prompt,
       "temperature": 0,
-      "max_tokens": 40,
+      "max_tokens": 60,
       "top_p": 1,
       "frequency_penalty": 0,
       "presence_penalty": 0
@@ -43,9 +43,18 @@ function App() {
         const answer = response.data.choices[0].text
         setLoading(false)
         setHistory(true)
-        setPromptArr([...promptArr, { prompt }])
-        setAiArr([...aiArr, { answer }])
+        // setPromptArr([...promptArr, { prompt }])
+        setPromptArr([...promptArr, { prompt, answer }])
+        // setAiArr([...aiArr, { answer }])
         setLastAnswer(answer)
+
+
+        // JUST DO FOR OF LOOP OF EACH ARRAY IN HERE AND RENDER THEM
+
+
+
+
+
 
       })
       .catch(function (error) {
@@ -57,7 +66,7 @@ function App() {
     console.log(lastAnswer)
     console.log(promptArr)
     console.log(aiArr)
-  }, [aiArr]);
+  }, [promptArr]);
 
   return (
     <div className="App">
@@ -105,16 +114,20 @@ function App() {
       <ul style={{
         textAlign: "left"
       }}>
-        {history &&
-          Object.values(promptArr).map((valueName, i) => (
-            <p key={i}>😀: {valueName.prompt}</p>
-          ))
-        }
-        {history &&
-          Object.values(aiArr).map((answerName, o) => (
-            <p key={o}>🤖:{answerName.answer}</p>
-          ))
-        }
+        <p>
+          {history &&
+            Object.values(promptArr).map((valueName, i) => (
+              <>
+                <li key={i}>
+                  😀: {valueName.prompt}
+                </li>
+                <li>
+                  🤖: {valueName.answer}
+                </li>
+              </>
+            ))
+          }
+        </p>
       </ul>
     </div>
   );
