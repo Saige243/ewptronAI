@@ -14,7 +14,6 @@ function App() {
   const [lastAnswer, setLastAnswer] = useState('')
 
   const [promptArr, setPromptArr] = useState([])
-  const [aiArr, setAiArr] = useState([])
 
   function getAxiosResponse() {
     setLoading(true)
@@ -22,7 +21,7 @@ function App() {
     const data = JSON.stringify({
       "prompt": prompt,
       "temperature": 0,
-      "max_tokens": 60,
+      "max_tokens": 80,
       "top_p": 1,
       "frequency_penalty": 0,
       "presence_penalty": 0
@@ -43,9 +42,7 @@ function App() {
         const answer = response.data.choices[0].text
         setLoading(false)
         setHistory(true)
-        // setPromptArr([...promptArr, { prompt }])
         setPromptArr([...promptArr, { prompt, answer }])
-        // setAiArr([...aiArr, { answer }])
         setLastAnswer(answer)
       })
       .catch(function (error) {
@@ -54,9 +51,10 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(lastAnswer)
-    console.log(promptArr)
-    console.log(aiArr)
+    // make sure state(s) are loading correctly
+    // console.log(lastAnswer)
+    // console.log(promptArr)
+    // console.log(aiArr)
   }, [promptArr]);
 
   return (
@@ -98,6 +96,7 @@ function App() {
           <Button
             sx={{
               marginTop: 3,
+              marginBottom: 2,
             }}
             variant="outlined"
             onClick={getAxiosResponse}
