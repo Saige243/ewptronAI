@@ -89,8 +89,12 @@ function App() {
               marginBottom: 3
             }}
           />
-          <h2>🤖 :</h2>
-          <p>{lastAnswer}</p>
+          {history &&
+            <>
+              <h2>🤖 :</h2>
+              <p>{lastAnswer}</p>
+            </>
+          }
           <Button
             sx={{
               marginTop: 3,
@@ -103,7 +107,8 @@ function App() {
         </FormControl>
       </Box>
       <ul style={{
-        textAlign: "left"
+        textAlign: "left",
+        margin: 1
       }}>
         <p>
           {history &&
@@ -112,7 +117,11 @@ function App() {
                 <li key={i}>
                   😀: {valueName.prompt}
                 </li>
-                <li>
+                <li
+                  style={{
+                    paddingBottom: "1rem"
+                  }}
+                >
                   🤖: {valueName.answer}
                 </li>
               </>
