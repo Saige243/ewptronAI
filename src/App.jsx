@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button'
 import LinearProgress from '@mui/material/LinearProgress';
-// import History from './Components/History'
+
 
 function App() {
   const [prompt, setPrompt] = useState('')
@@ -47,15 +47,6 @@ function App() {
         setPromptArr([...promptArr, { prompt, answer }])
         // setAiArr([...aiArr, { answer }])
         setLastAnswer(answer)
-
-
-        // JUST DO FOR OF LOOP OF EACH ARRAY IN HERE AND RENDER THEM
-
-
-
-
-
-
       })
       .catch(function (error) {
         console.log(error);
