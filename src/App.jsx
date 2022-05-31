@@ -114,7 +114,7 @@ function App() {
             Object.values(promptArr).map((valueName, i) => (
               <>
                 <li key={i}>
-                  😀: {valueName.prompt}
+                  🤔: {valueName.prompt}
                 </li>
                 <li
                   style={{
