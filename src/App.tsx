@@ -80,7 +80,7 @@ function App() {
             id="outlined-multiline-flexible"
             label="Let's hear it."
             multiline
-            size="large"
+            size="medium"
             maxRows={8}
             onChange={(e) => setPrompt(e.target.value)}
             sx={{
