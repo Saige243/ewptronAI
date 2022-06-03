@@ -13,7 +13,7 @@ function App() {
   const [history, setHistory] = useState(false)
   const [lastAnswer, setLastAnswer] = useState('')
 
-  const [promptArr, setPromptArr] = React.useState<Array<any>>([])
+  const [promptArr, setPromptArr] = React.useState<Array<string>>([])
 
   function getAxiosResponse() {
     setLoading(true)
@@ -39,8 +39,9 @@ function App() {
 
     interface Data {
       data: string;
-      choices: string[];
+      choices: Array<string>;
       text: string;
+      answer: string;
     }
 
     interface Answer {
@@ -51,7 +52,7 @@ function App() {
     }
 
     axios(config)
-      .then(function (response: any) {
+      .then(function (response: Data) {
         const answer = response.data.choices[0].text
         setLoading(false)
         setHistory(true)
