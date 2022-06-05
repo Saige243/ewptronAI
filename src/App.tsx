@@ -37,15 +37,15 @@ function App() {
       data: data
     };
 
-    interface Answer {
-      response?: string;
-      data?: string;
-      choices?: Array<number>;
-      text?: string;
+    interface Response {
+      response?: string,
+      data?: {
+        choices: Array<string>
+      }
     }
 
     axios(config)
-      .then(function (response: Answer) {
+      .then(function (response: Response) {
         const answer: string = response?.data?.choices[0].text
         setLoading(false)
         setHistory(true)
