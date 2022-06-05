@@ -11,9 +11,9 @@ function App() {
   const [prompt, setPrompt] = useState('')
   const [loading, setLoading] = useState(false);
   const [history, setHistory] = useState(false)
-  const [lastAnswer, setLastAnswer] = useState('')
+  const [lastAnswer, setLastAnswer] = useState<string>('')
 
-  const [promptArr, setPromptArr] = React.useState<Array<string>>([])
+  const [promptArr, setPromptArr] = React.useState<Array<any>>([])
 
   function getAxiosResponse() {
     setLoading(true)
@@ -52,7 +52,7 @@ function App() {
     }
 
     axios(config)
-      .then(function (response: Data) {
+      .then(function (response: any) {
         const answer = response.data.choices[0].text
         setLoading(false)
         setHistory(true)
