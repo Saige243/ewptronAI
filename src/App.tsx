@@ -40,13 +40,13 @@ function App() {
     interface Answer {
       response?: string;
       data?: string;
-      choices?: string;
+      choices?: Array<number>;
       text?: string;
     }
 
     axios(config)
-      .then(function (response: any) {
-        const answer = response.data.choices[0].text
+      .then(function (response: Answer) {
+        const answer: string = response?.data?.choices[0].text
         setLoading(false)
         setHistory(true)
         setPromptArr([...promptArr, { prompt, answer }])
