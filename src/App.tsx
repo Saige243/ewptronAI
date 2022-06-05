@@ -37,18 +37,11 @@ function App() {
       data: data
     };
 
-    interface Data {
-      data: string;
-      choices: Array<string>;
-      text: string;
-      answer: string;
-    }
-
     interface Answer {
-      response: string;
-      data: string;
-      choices: any;
-      text: string;
+      response?: string;
+      data?: string;
+      choices?: string;
+      text?: string;
     }
 
     axios(config)
