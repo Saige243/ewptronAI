@@ -40,7 +40,7 @@ function App() {
     interface Response {
       response?: string,
       data?: {
-        choices: Array<string>
+        choices: Array<any>
       }
     }
 
