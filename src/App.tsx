@@ -59,9 +59,6 @@ function App() {
 
   useEffect(() => {
     // make sure state(s) are loading correctly
-    // console.log(lastAnswer)
-    // console.log(promptArr)
-    // console.log(aiArr)
   }, [promptArr]);
 
   return (
