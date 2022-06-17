@@ -6,8 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button'
 import LinearProgress from '@mui/material/LinearProgress';
 
-
-function App() {
+function Ewptron() {
   const [prompt, setPrompt] = useState('')
   const [loading, setLoading] = useState(false);
   const [history, setHistory] = useState(false)
@@ -58,7 +57,6 @@ function App() {
   }
 
   useEffect(() => {
-    // make sure state(s) are loading correctly
   }, [promptArr]);
 
   return (
@@ -136,4 +134,4 @@ function App() {
   );
 }
 
-export default App;
+export default Ewptron;
